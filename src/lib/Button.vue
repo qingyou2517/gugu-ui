@@ -53,9 +53,7 @@ $blue: #40a9ff;
 $red: red;
 $grey: grey;
 $radius: 4px;
-button{
-  width: auto;
-}
+
 .gugu-button {
   box-sizing: border-box;
   height: $h;
