@@ -37,6 +37,7 @@ span{
   width: 18px;
   background: #ffffff;
   border-radius: 50%;
+  transition: left 250ms;
 }
 button.checked{
   background: blue;
