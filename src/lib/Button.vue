@@ -1,14 +1,17 @@
 <template>
-  <div :size="size">
-    <button v-bind="rest">
-      <slot />
-    </button>
-  </div>
+  <button class="gugu-button"
+          :class="`theme-${theme}`">
+    <slot />
+  </button>
 </template>
 <script lang="ts">
 export default {
   inheritAttrs: false,
   props: {
+    theme: {
+      type: String,
+      default: 'button'
+    },
   },
   setup(props, context) {
     const { size, ...rest } = context.attrs;
