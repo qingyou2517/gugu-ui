@@ -1,5 +1,5 @@
 <template>
-  <button :class="{checked:value}" @click="toggle">
+  <button :class="{'gugu-checked':value}" @click="toggle">
     <span></span>
   </button>
 </template>
@@ -19,7 +19,7 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h:22px;
 
 button{
@@ -39,7 +39,7 @@ button{
     border-radius: 50%;
     transition: all 250ms;
   }
-  &.checked{
+  &.gugu-checked{
     background: #1890ff;
     &>span{
       left: calc(100% - 18px - 2px);
@@ -48,7 +48,7 @@ button{
   &:active{
     > span {width: 18px + 4px;}
   }
-  &.checked:active{
+  &.gugu-checked:active{
     > span {width: 18px + 4px; margin-left: -4px;}
   }
 }
