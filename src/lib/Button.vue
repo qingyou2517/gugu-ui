@@ -1,5 +1,5 @@
 <template>
-  <button class="gugu-button" :class="`gugu-theme-${theme}`">
+  <button class="gugu-button" :class="classes">
     <slot />
   </button>
 </template>
@@ -37,10 +37,13 @@ $border-color: #d9d9d9;
 $color: #333;
 $blue: #40a9ff;
 $radius: 4px;
+button{
+  width: auto;
+}
 .gugu-button {
   box-sizing: border-box;
   height: $h;
-  padding: 0 30px;
+  padding: 0 12px;
   cursor: pointer;
   display: inline-flex;
   justify-content: center;
@@ -82,6 +85,18 @@ $radius: 4px;
     &:hover,&:focus{
       background: darken(white, 5%);;
     }
+  }
+
+  margin-top: 4px;
+  &.gugu-size-big {
+    font-size: 24px;
+    height: 48px;
+    padding: 0 16px;
+  }
+  &.gugu-size-small {
+    font-size: 12px;
+    height: 20px;
+    padding: 0 4px;
   }
 }
 </style>
