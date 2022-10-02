@@ -55,6 +55,7 @@ $grey: grey;
 $radius: 4px;
 
 .gugu-button {
+
   box-sizing: border-box;
   height: $h;
   padding: 0 12px;
@@ -173,7 +174,6 @@ $radius: 4px;
   > .gugu-loadingIndicator{
     width: 14px;
     height: 14px;
-    margin-top: 4px;
     margin-right: 6px;
     border-radius: 8px;
     border-color: $blue $blue $blue transparent;
