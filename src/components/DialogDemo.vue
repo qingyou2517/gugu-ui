@@ -1,8 +1,11 @@
 <template>
   <div>Dialog 示例</div>
   <h1>示例1</h1>
-  <Button @click="toggle">toggle</Button>
-  <Dialog v-model:visible="x"></Dialog>
+  <Button @click="toggleDialog">toggle</Button>
+  <Dialog v-model:visible="x"
+          :closeOnClickOverlay="false"
+          :ok="f1" :cancel="f2">
+  </Dialog>
 </template>
 
 <script lang="ts">
@@ -17,10 +20,18 @@ export default {
   },
   setup() {
     const x = ref(false);
-    const toggle = () => {
+    const toggleDialog = () => {
       x.value = !x.value;
     };
-    return {x, toggle};
+    const f1 = () => {
+      //希望在对话框里填满了文本，点ok才能关闭这个对话框
+      //没写，则无法靠ok来关闭:通过return false来阻止关闭
+      return false;
+    };
+    const f2 = () => {
+      //点cancel可以直接关闭
+    };
+    return {x, toggleDialog, f1, f2};
   }
 };
 </script>
