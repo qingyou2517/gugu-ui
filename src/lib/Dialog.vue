@@ -1,21 +1,23 @@
 <template>
-  <div class="gugu-dialog-overlay">
-
-  </div>
-  <div class="gugu-dialog-wrapper">
-    <div class="gugu-dialog">
-      <header>标题 <span class="gugu-dialog-close"></span>
-      </header>
-      <main>
-        <p>第一行字</p>
-        <p>第二行字</p>
-      </main>
-      <footer>
-        <Button level="main">OK</Button>
-        <Button>Cancel</Button>
-      </footer>
+  <template v-if="visible">
+    <div class="gugu-dialog-overlay"></div>
+    <div class="gugu-dialog-wrapper">
+      <div class="gugu-dialog">
+        <header>
+          标题
+          <span class="gugu-dialog-close"></span>
+        </header>
+        <main>
+          <p>第一行字</p>
+          <p>第二行字</p>
+        </main>
+        <footer>
+          <Button level="main">OK</Button>
+          <Button>Cancel</Button>
+        </footer>
+      </div>
     </div>
-  </div>
+  </template>
 </template>
 
 <script lang="ts">
@@ -24,6 +26,12 @@ export default {
   components: {
     Button,
   },
+  props:{
+    visible: {
+      type: Boolean,
+      default: false
+    }
+  }
 };
 </script>
 
