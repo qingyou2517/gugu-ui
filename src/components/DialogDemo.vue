@@ -5,6 +5,13 @@
   <Dialog v-model:visible="x"
           :closeOnClickOverlay="false"
           :ok="f1" :cancel="f2">
+    <template v-slot:content>
+      <strong>这行文本支持标签</strong>
+      <div>这行文本支持标签</div>
+    </template>
+    <template v-slot:title>
+      <strong>这里自定义标题</strong>
+    </template>
   </Dialog>
 </template>
 
