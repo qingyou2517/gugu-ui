@@ -13,12 +13,15 @@
       <strong>这里自定义标题</strong>
     </template>
   </Dialog>
+  <h1>示例2</h1>
+  <Button @click="showDialog">show</Button>
 </template>
 
 <script lang="ts">
 import Dialog from '../lib/Dialog.vue';
 import Button from '../lib/Button.vue';
-import {ref} from 'vue';
+import {h, ref} from 'vue';
+import { openDialog } from '../lib/openDialog';
 
 export default {
   components: {
@@ -38,7 +41,19 @@ export default {
     const f2 = () => {
       //点cancel可以直接关闭
     };
-    return {x, toggleDialog, f1, f2};
+    const showDialog = () => {
+      openDialog({
+        title: h('strong', {}, '标题'),
+        content: '你好',
+        ok() {
+          console.log('ok')
+        },
+        cancel() {
+          console.log('cancel')
+        }
+      })
+    }
+    return {x, toggleDialog, f1, f2,showDialog};
   }
 };
 </script>
