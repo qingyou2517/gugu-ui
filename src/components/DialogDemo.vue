@@ -5,7 +5,7 @@
   <Dialog v-model:visible="x"
           :closeOnClickOverlay="false"
           :ok="f1" :cancel="f2">
-    <template v-slot:content>
+    <template v-slot:content>git
       <strong>这行文本支持标签</strong>
       <div>这行文本支持标签</div>
     </template>
