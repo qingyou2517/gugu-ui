@@ -1,12 +1,14 @@
 <template>
   <div class="gugu-tabs">
-    <div class="gugu-tabs-nav">
+    <div class="gugu-tabs-nav" ref="container">
       <div class="gugu-tabs-nav-item"
            v-for="(title,index) in titles"
+           :ref="el => { if (title===selectedTitle) selectedItem = el }"
            @click="isSelected(title)" :class="{selected: title=== selectedTitle}"
            :key="index">
         {{title}}
       </div>
+      <div class="gugu-tabs-nav-indicator" ref="indicator"></div>
     </div>
     <div class="gugu-tabs-content">
       <component class="gugu-tabs-content-item"
@@ -16,6 +18,7 @@
 </template>
 
 <script lang="ts">
+import { onMounted,  ref, watchEffect } from 'vue'
 import Tab from './Tab.vue'
 
 export default {
@@ -25,6 +28,19 @@ export default {
     }
   },
   setup(props, context) {
+    const selectedItem = ref < HTMLDivElement > (null)
+    const indicator = ref < HTMLDivElement > (null)
+    const container = ref < HTMLDivElement > (null)
+    onMounted(() => {
+      watchEffect(()=>{
+        const {width} = selectedItem.value.getBoundingClientRect()
+        indicator.value.style.width = width + 'px'
+        const {left: left1} = container.value.getBoundingClientRect()
+        const {left: left2} = selectedItem.value.getBoundingClientRect()
+        const left = left2 - left1
+        indicator.value.style.left = left + 'px'
+      })
+    })
     const defaults = context.slots.default()
     defaults.forEach((tag) => {
       if (tag.type !== Tab) {
@@ -37,7 +53,7 @@ export default {
     const isSelected = (title: string) => {
       context.emit('update:selectedTitle', title)
     }
-    return {defaults, titles, isSelected}
+    return {defaults, titles, isSelected,selectedItem, indicator, container}
   }
 }
 </script>
@@ -51,6 +67,7 @@ $border-color: #d9d9d9;
     display: flex;
     color: $color;
     border-bottom: 1px solid $border-color;
+    position: relative;
     &-item {
       padding: 8px 0;
       margin: 0 16px;
@@ -61,6 +78,15 @@ $border-color: #d9d9d9;
       &.selected {
         color: $blue;
       }
+    }
+    &-indicator {
+      position: absolute;
+      height: 3px;
+      background: $blue;
+      left: 0;
+      bottom: -1px;
+      width: 100px;
+      transition: all 250ms;
     }
   }
   &-content {
