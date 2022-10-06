@@ -1,10 +1,10 @@
 <template>
   <div class="topnav">
-    <div class="logo">
+    <router-link to="/" class="logo">
       <svg class="icon" >
         <use xlink:href="#icon-gezi"></use>
       </svg>
-    </div>
+    </router-link>
     <ul class="doc">
       <li>
         <router-link to="/doc">文档</router-link>
@@ -52,7 +52,7 @@ $color: #007974;
 
   > .logo {
     max-width: 6em;
-    margin-left: 100px;
+    margin-left: 200px;
     > svg {
       width: 2em; height: 2em;
     }
@@ -62,7 +62,7 @@ $color: #007974;
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-    margin-right: 100px;
+    margin-right: 200px;
     > li {
       margin: 0 1em;
     }
