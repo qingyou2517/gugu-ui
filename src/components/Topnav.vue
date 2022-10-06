@@ -1,11 +1,18 @@
 <template>
   <div class="topnav">
-    <div class="logo">LOGO</div>
-    <ul class="menu">
-      <li>菜单1</li>
-      <li>菜单2</li>
+    <div class="logo">
+      <svg class="icon" >
+        <use xlink:href="#icon-gezi"></use>
+      </svg>
+    </div>
+    <ul class="doc">
+      <li>
+        <router-link to="/doc">文档</router-link>
+      </li>
     </ul>
-    <span class="toggleAside" @click="toggleMenu"></span>
+    <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
+      <use xlink:href="#icon-caidan"></use>
+    </svg>
   </div>
 </template>
 
@@ -13,6 +20,12 @@
 import {inject, Ref} from 'vue';
 
 export default {
+  props: {
+    toggleMenuButtonVisible: {
+      type: Boolean,
+      default: false
+    }
+  },
   setup() {
     const menuVisible = inject<Ref<boolean>>('menuVisible'); // get
     const toggleMenu = () => {
@@ -24,7 +37,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$color: #007974;
 .topnav {
+  color: $color;
   display: flex;
   padding: 16px;
   position: fixed;
@@ -32,19 +47,22 @@ export default {
   left: 0;
   width: 100%;
   z-index: 10;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
 
   > .logo {
     max-width: 6em;
-    margin-right: auto;
+    margin-left: 100px;
+    > svg {
+      width: 2em; height: 2em;
+    }
   }
 
-  > .menu {
+  > .doc {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-
+    margin-right: 100px;
     > li {
       margin: 0 1em;
     }
@@ -53,7 +71,6 @@ export default {
   > .toggleAside {
     width: 24px;
     height: 24px;
-    background: red;
     position: absolute;
     left: 16px;
     top: 50%;
@@ -62,7 +79,7 @@ export default {
   }
 
   @media (max-width: 500px) {
-    > .menu {
+    > .doc {
       display: none;
     }
     > .logo {
