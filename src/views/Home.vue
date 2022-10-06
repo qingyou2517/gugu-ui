@@ -97,7 +97,7 @@ $color: #007974;
   }
 }
 .banner {
-  padding: 100px 0;
+  padding: 150px 0;
   display: flex;
   justify-content: center;
   align-items: center;
