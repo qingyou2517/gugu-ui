@@ -1,6 +1,7 @@
 {
   "name": "gugu-ui",
   "version": "0.0.0",
+  "module": "dist/lib/gugu.esm.js",
   "scripts": {
     "dev": "vite",
     "build": "vite build"
