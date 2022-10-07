@@ -33,3 +33,10 @@ body {
   fill: currentColor;
   overflow: hidden;
 }
+html,body {
+  height: 100vh;
+  overflow-y: hidden;
+}
+@media (max-width: 500px) {
+  *::-webkit-scrollbar {display: none;}
+}

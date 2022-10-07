@@ -51,6 +51,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+$aside-index : 10;
 .layout {
   display: flex;
   flex-direction: column;
@@ -60,7 +61,7 @@ export default {
   }
   > .content {
     flex-grow: 1;
-    padding-top: 60px;
+    margin-top: 65px;
     padding-left: 156px;
     @media (max-width: 500px) {
       padding-left: 0;
@@ -69,6 +70,8 @@ export default {
 }
 .content {
   display: flex;
+  height: calc(100% - 65px);
+  overflow-y: auto;
   > aside {
     flex-shrink: 0;
   }
@@ -86,7 +89,7 @@ aside {
   left: 0;
   padding: 70px 0 16px;
   height: 100%;
-  z-index: 1;
+  z-index: $aside-index;;
   > h2 {
     padding: 0 16px;
     margin-bottom: 4px;
