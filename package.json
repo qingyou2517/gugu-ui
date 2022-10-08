@@ -1,6 +1,6 @@
 {
-  "name": "gugu-ui",
-  "version": "0.0.4",
+  "name": "gugu-ui-byx",
+  "version": "0.0.1",
   "files": [
     "dist/lib/*"
   ],
