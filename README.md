@@ -16,8 +16,9 @@
 3. 打开 http://127.0.0.1:8080
 
 ## 库文件打包步骤
-1. 运行 rollup -c
-2. 得到的 dist/lib 目录就是编译后的库文件所在目录
+1. 配置 rollup.config.js
+2. 运行 rollup -c
+3. 得到的 dist/lib 目录就是编译后的库文件所在目录
 
 ## 库文件发布到 npm
 1. 运行 nrm use npm，切换到 npm 源
