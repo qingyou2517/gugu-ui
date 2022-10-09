@@ -1,7 +1,14 @@
 import Dialog from "./Dialog.vue";
 import { createApp, h } from "vue";
 
-export const openDialog = (options) => {
+interface Options {
+  title: string;
+  content?: string;
+  ok?: () => boolean;
+  cancel?: () => void;
+}
+
+export const openDialog = (options: Options) => {
   const { title, content, ok, cancel } = options;
   //把 dialog 挂载到 div 上
   const div = document.createElement("div");
@@ -9,7 +16,7 @@ export const openDialog = (options) => {
 
   const close = () => {
     // @ts-ignore
-    app.unmount(div);
+    app.unmount();
     div.remove();
   };
 
@@ -22,7 +29,7 @@ export const openDialog = (options) => {
         {
         //props： 可视与关闭
         visible: true,
-        "onUpdate:visible": (newVisible) => {
+        "onUpdate:visible": (newVisible: boolean) => {
           if (newVisible === false) {
             close();
           }

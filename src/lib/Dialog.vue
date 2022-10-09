@@ -21,56 +21,39 @@
   </template>
 </template>
 
-<script lang="ts">
+<script lang="ts" setup="props, context">
 import Button from "./Button.vue";
-export default {
-  components: {
-    Button,
-  },
-  props:{
-    visible: {
-      type: Boolean,
-      default: false
-    },
-    //是否关闭 点击toggle按钮后 弹出的阴影背景
-    //若父组件未传初值，则它默认true，表示开启这个“关闭”功能：即不弹出阴影背景
-    closeOnClickOverlay: {
-      type: Boolean,
-      default: true
-    },
-    ok: {
-      type: Function
-    },
-    cancel: {
-      type: Function
-    },
-  },
-  setup(props, context) {
-    const close = () => {
-      //关闭对话框
-      context.emit('update:visible', false)
-    }
-    const onClickOverlay = () => {
-      //如果开启 closeOnClickOverlay，则 close
-      if (props.closeOnClickOverlay) {
-        close()
-      }
-    }
-    const ok = () => {
-      //等价于 if(props.ok && props.ok()!==false)
-      if (props.ok?.() !== false) {
-        //为true，则关闭对话框
-        //意味着ok可以通过return false来阻止关闭
-        close()
-      }
-    }
-    const cancel = () => {
-      props.cancel?.()
-      close()
-    }
-    return {close, onClickOverlay, ok, cancel}
+
+const props = defineProps<{
+  visible?: boolean;
+  closeOnClickOverlay?: boolean;
+  ok?: () => boolean;
+  cancel?: () => void
+}>();
+const emit = defineEmits<{
+  (e: 'update:visible', visible: boolean): void
+}>()
+const close = () => {
+  emit('update:visible', false)
+}
+const onClickOverlay = () => {
+  //如果开启 closeOnClickOverlay，则 close
+  if (props.closeOnClickOverlay) {
+    close()
   }
-};
+}
+const ok = () => {
+  //等价于 if(props.ok && props.ok()!==false)
+  if (props.ok?.() !== false) {
+    //为true，则关闭对话框
+    //意味着ok可以通过return false来阻止关闭
+    close()
+  }
+}
+const cancel = () => {
+  props.cancel?.()
+  close()
+}
 </script>
 
 <style lang="scss">

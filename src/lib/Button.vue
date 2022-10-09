@@ -1,47 +1,34 @@
 <template>
-  <button class="gugu-button" :class="classes" :disabled="disabled">
+  <button class="gugu-button" :class="classes"
+          :disabled="disabled" @click="$emit('click', $event)">
     <div v-if="loading" class="gugu-loadingIndicator"></div>
     <slot />
   </button>
 </template>
-<script lang="ts">
+
+<script lang="ts" setup="props">
 import {computed, ref} from 'vue';
 
-export default {
-  props: {
-    theme: {
-      type: String,
-      default: 'button'
-    },
-    size: {
-      type: String,
-      default: "normal",
-    },
-    level: {
-      type: String,
-      default: "normal",
-    },
-    disabled: {
-      type: Boolean,
-      default: false,
-    },
-    loading: {
-      type: Boolean,
-      default: false
-    }
-  },
-  setup(props) {
-    const { theme, size, level } = props;
-    const classes = computed(() => {
-      return {
-        [`gugu-theme-${theme}`]: theme,
-        [`gugu-size-${size}`]: size,
-        [`gugu-level-${level}`]: level,
-      };
-    })
-    return { classes };
-  },
-};
+const props = defineProps<{
+  theme?: 'button' | 'text' | 'link';
+  size?: 'normal' | 'big' | 'small';
+  level?: 'normal' | 'main' | 'danger';
+  disabled?: boolean;
+  loading?: boolean;
+}>();
+
+defineEmits<{
+  (e: 'click', event: MouseEvent): void
+}>()
+
+const { theme, size, level } = props;
+const classes = computed(() => {
+  return {
+    [`gugu-theme-${theme}`]: theme,
+    [`gugu-size-${size}`]: size,
+    [`gugu-level-${level}`]: level,
+  };
+});
 </script>
 
 <style lang="scss">
