@@ -2,14 +2,14 @@
 
 打开终端运行下列命令：
 
-```
-npm install gugu-ui
+```bash
+npm install gugu-ui-byx
 ```
 
 或
 
-```
-yarn add gugu-ui
+```bash
+yarn add gugu-ui-byx
 ```
 
 下一节：[开始使用](#/doc/get-started)

@@ -3,8 +3,8 @@
 
 然后在你的代码中写入下面的代码
 
-```
-import {Button, Tabs, Switch, Dialog, openDialog} from "gugu-ui"
+```javascript
+import {Button, Tabs, Switch, Dialog, openDialog} from "gugu-ui-byx"
 ```
 
 就可以使用我提供的组件了。
@@ -13,7 +13,7 @@ import {Button, Tabs, Switch, Dialog, openDialog} from "gugu-ui"
 
 代码示例：
 
-```
+```html
 <template>
   <div>
     <Button>按钮</Button>
@@ -21,7 +21,7 @@ import {Button, Tabs, Switch, Dialog, openDialog} from "gugu-ui"
 </template>
 
 <script>
-import {Button, Tabs, Switch, Dialog, openDialog} from "gugu-ui"
+import {Button, Tabs, Switch, Dialog, openDialog} from "gugu-ui-byx"
 
 export default {
   components: {Button}
