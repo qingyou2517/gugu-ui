@@ -1,15 +1,24 @@
 <template>
   <div class="topnav">
     <router-link to="/" class="logo">
-      <svg class="icon" >
+      <svg class="icon">
         <use xlink:href="#icon-gezi"></use>
       </svg>
+      <span>首页</span>
     </router-link>
-    <ul class="doc">
-      <li>
-        <router-link to="/doc">开始文档</router-link>
-      </li>
-    </ul>
+    <div class="doc-wrapper">
+      <ul class="doc">
+        <li>
+          <router-link to="/doc">指南</router-link>
+        </li>
+      </ul>
+      <a
+        href="https://www.yuque.com/qingyou-tkchw/lp26se/kgpgchlbmi8pd5d4"
+        target="_blank"
+        class="blog"
+        >语雀</a
+      >
+    </div>
     <svg v-if="toggleMenuButtonVisible" class="toggleAside" @click="toggleMenu">
       <use xlink:href="#icon-caidan"></use>
     </svg>
@@ -17,21 +26,21 @@
 </template>
 
 <script lang="ts">
-import {inject, Ref} from 'vue';
+import { inject, Ref } from "vue";
 
 export default {
   props: {
     toggleMenuButtonVisible: {
       type: Boolean,
-      default: false
-    }
+      default: false,
+    },
   },
   setup() {
-    const menuVisible = inject<Ref<boolean>>('menuVisible'); // get
+    const menuVisible = inject<Ref<boolean>>("menuVisible"); // get
     const toggleMenu = () => {
       menuVisible.value = !menuVisible.value;
     };
-    return {toggleMenu};
+    return { toggleMenu };
   },
 };
 </script>
@@ -53,16 +62,27 @@ $color: #007974;
   > .logo {
     max-width: 6em;
     margin-left: 200px;
+    display: flex;
+    align-items: center;
     > svg {
-      width: 2em; height: 2em;
+      width: 2em;
+      height: 2em;
     }
   }
-
+  > .doc-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-right: 50px;
+    > .blog {
+      margin-left: 1em;
+    }
+  }
   > .doc {
     display: flex;
     white-space: nowrap;
     flex-wrap: nowrap;
-    margin-right: 200px;
+
     > li {
       margin: 0 1em;
     }
@@ -79,8 +99,14 @@ $color: #007974;
   }
 
   @media (max-width: 500px) {
-    > .doc {
-      display: none;
+    > .doc-wrapper {
+      .doc {
+        display: none;
+      }
+    }
+    .topnav {
+      display: flex;
+      justify-content: space-between;
     }
     > .logo {
       margin: 0 auto;
